@@ -23,8 +23,6 @@ def get_event_time():
 
 while True:
     if get_day_of_weak() in raid_days:
-        print(raid_days[get_day_of_weak()])
-        print("DEBUG:==================")
-        print(get_day_of_weak())
-        print(get_event_time())
+        print(get_day_of_weak(), raid_days[get_day_of_weak()])
+
     sleep(60)
