@@ -38,8 +38,8 @@ while True:
         for time in raid_days[get_day_of_weak()]:
             # сравниваем текущее время и время рейдов
             if get_time_now == time:
-                print(ts_event, "время очередного события")
+                print(ts_event(get_time_now), "время очередного события")
             else:
-                print("Время еще не пришло")
+                print("Время еще не пришло. Сейчас: ",get_time_now())
     # время проверки
     sleep(60)
