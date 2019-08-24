@@ -25,8 +25,8 @@ def get_time_now():
 
 
 # удаленный ивент  todo
-def ts_event(time):
-    print(time)
+def ts_event(timer):
+    print(timer)
 
 
 while True:
