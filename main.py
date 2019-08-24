@@ -3,13 +3,13 @@ from time import sleep
 
 # список рейдовых дней
 raid_days = {
-    'Monday': '21:21',
-    'Tuesday': ['21:07', '21:14', '21:21'],
-    'Wednesday': '17:21',
-    'Thursday': ['17:07', '17:14', '17:21'],
-    'Friday': '19:21',
-    'Saturday': ['19:07', '19:14', '19:21'],
-    'Sunday': '19:21'}
+    'Monday': {'21:21': {'Летучий дельфиец'}},
+    'Tuesday': {'21:07': {'Кракен'}, '21:21': {'Летучий дельфиец'}},
+    'Wednesday': {'17:21': {'Летучий дельфиец'}},
+    'Thursday': {'17:07': {'Кракен'}, '17:21': {'Летучий дельфиец'}},
+    'Friday': {'19:21': {'Летучий дельфиец '}},
+    'Saturday': {'16:56': {'Кракен'}, '19:21': {'Летучий дельфиец'}},
+    'Sunday': {'19:21': {'Летучий дельфиец'}}}
 
 
 # получаем день недели
@@ -26,20 +26,26 @@ def get_time_now():
 
 # удаленный ивент  todo
 def ts_event(timer):
-    print(timer)
+    print("время очередного события", timer)
 
 
 while True:
     # проверяем день в списке рейдовых дней
     if get_day_of_weak() in raid_days:
         # принт для дебага
-        print(get_day_of_weak(), raid_days[get_day_of_weak()])
+        print("DEBUG ", get_day_of_weak(), raid_days[get_day_of_weak()])
         # считываем список в строку для проверки
         for time in raid_days[get_day_of_weak()]:
             # сравниваем текущее время и время рейдов
-            if get_time_now == time:
-                print(ts_event(get_time_now), "время очередного события")
+            if get_time_now() == time:
+                # вызов удаленного ивента todo
+                ts_event(time)
+                # выход из if
+                break
             else:
-                print("Время еще не пришло. Сейчас: ", get_time_now())
+                # для Дебага логирования
+                print("Время еще не пришло, cейчас: ", get_time_now())
+                # вывод сегодняшнего события
+                print("Сегодня", '\n'.join(raid_days[get_day_of_weak()][time]))
     # время проверки
     sleep(60)
