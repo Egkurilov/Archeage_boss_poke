@@ -40,6 +40,6 @@ while True:
             if get_time_now == time:
                 print(ts_event(get_time_now), "время очередного события")
             else:
-                print("Время еще не пришло. Сейчас: ",get_time_now())
+                print("Время еще не пришло. Сейчас: ", get_time_now())
     # время проверки
     sleep(60)
