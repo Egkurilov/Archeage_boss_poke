@@ -1,6 +1,6 @@
 from datetime import datetime
 from time import sleep
-
+import tsping
 # список рейдовых дней
 raid_days = {
     'Monday': {'21:21': {'Летучий дельфиец'}},
@@ -8,25 +8,24 @@ raid_days = {
     'Wednesday': {'17:21': {'Летучий дельфиец'}},
     'Thursday': {'17:07': {'Кракен'}, '17:21': {'Летучий дельфиец'}},
     'Friday': {'19:21': {'Летучий дельфиец '}},
-    'Saturday': {'16:56': {'Кракен'}, '19:21': {'Летучий дельфиец'}},
+    'Saturday': {'19:00': {'Кракен'}, '19:58': {'Летучий дельфиец'}},
     'Sunday': {'19:21': {'Летучий дельфиец'}}}
 
 
 # получаем день недели
 def get_day_of_weak():
-    now_dow = datetime.now().strftime("%A")
-    return now_dow
+    return datetime.now().strftime("%A")
 
 
 # получаем текущее время
 def get_time_now():
-    now_time = datetime.now().strftime("%H:%M")
-    return now_time
+    return datetime.now().strftime("%H:%M")
 
 
 # удаленный ивент  todo
 def ts_event(timer):
     print("время очередного события", timer)
+    tsping.client_with_group_list('"Сегодня"\n'.join(raid_days[get_day_of_weak()][time]))
 
 
 while True:
@@ -46,6 +45,6 @@ while True:
                 # для Дебага логирования
                 print("Время еще не пришло, cейчас: ", get_time_now())
                 # вывод сегодняшнего события
-                print("Сегодня", '\n'.join(raid_days[get_day_of_weak()][time]))
+                #print("Сегодня", '\n'.join(raid_days[get_day_of_weak()][time]))
     # время проверки
     sleep(60)
